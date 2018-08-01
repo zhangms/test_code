@@ -45,6 +45,7 @@ public class EventBusDemo {
 
         public GameObject(long id) {
             this.id = id;
+            eventBus.register(this);
         }
 
         public void move() {
@@ -74,14 +75,14 @@ public class EventBusDemo {
     public static void main(String[] args) {
 
         GameObject g1 = new GameObject(1);
-        GameObject g2 = new GameObject(2);
-
-        g1.attach(g2);
+//        GameObject g2 = new GameObject(2);
+//
+//        g1.attach(g2);
 
         long start = System.currentTimeMillis();
         for (int i = 0; i < 1000; i++) {
             g1.move();
-            g2.move();
+//            g2.move();
         }
         long time = System.currentTimeMillis() - start;
 

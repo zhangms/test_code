@@ -15,15 +15,22 @@ public class Utils {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (file.getName().toLowerCase().endsWith(".java")) {
+        } else if (file.getName().toLowerCase().endsWith(".txt")) {
             try {
                 List<String> lines = Files.readAllLines(file.toPath(), Charset.forName("GBK"));
+                System.out.println(lines);
                 Files.write(file.toPath(), lines, Charset.forName("UTF-8"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
+    }
+
+    public static void main(String[] args) {
+
+        gbk2utf8(new File("/Users/ZMS/Downloads/ei.txt"));
+
     }
 
 }

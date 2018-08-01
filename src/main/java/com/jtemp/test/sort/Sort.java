@@ -1,9 +1,6 @@
 package com.jtemp.test.sort;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Sort {
 
@@ -156,6 +153,36 @@ public class Sort {
         return list;
     }
 
+    /**
+     * 希尔排序
+     *
+     * @param array
+     */
+    private static void shellSort(int[] array) {
+        int gap = 1;
+        while (gap < array.length / 3) {
+            gap = 3 * gap + 1;
+        }
+
+        while (gap >= 1) {
+
+            for (int i = gap; i < array.length; i++) {
+                for (int j = i; j >= gap; j -= gap) {
+                    if (array[i] < array[j - gap]) {
+                        swap(array, i, j - gap);
+                    }
+                }
+            }
+            gap /= 3;
+        }
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
+    }
+
     public static void main(String[] args) {
         List<Integer> list = randomList();
         System.out.println(list);
@@ -163,7 +190,12 @@ public class Sort {
 //        Sort.selectionSort(list);
 //        insertionSort(list);
 //        list = mergeSort(list);
-        quickSort(list);
+//        quickSort(list);
+
+        int[] array = list.stream().mapToInt(Integer::intValue).toArray();
+        shellSort(array);
+        System.out.println(Arrays.toString(array));
+
         System.out.println(list);
     }
 }
